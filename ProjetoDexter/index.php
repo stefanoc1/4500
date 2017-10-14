@@ -1,5 +1,5 @@
     <header class="header">
-           <?php #Topo ?>
+           <?php include_once 'template/topo.php'; ?>
     </header>
     <?php
         $banners = array(
@@ -40,18 +40,23 @@
           <!-- Wrapper for slides -->
 
           <div class="carousel-inner">
-            <?php #Banner --- Inicio Laço ?>
-                <div class="item" style="background-image:url('<?php #Url Banner ?>')">
+            <?php 
+                foreach ($banners as $banner):
+            ?>
+                <div class="item <?= ($banner['id']==1) ? 'active' : ''?>" style="background-image:url('<?= $banner['url']; ?>')">
                   <div class="container">
                     <div class="row">
                         <div class="span12">
-                            <h2><?php #Nome do Banner ?></h2>
-                            <p><?php #Descriçao ?></p>
+                            <!-- <h2><?php #Nome do Banner ?></h2>-->
+                            <h2><?= $banner['nome'];?></h2>
+                            <!-- <p><?php #Descricao do Banner ?></p>-->
+                            <p><?= $banner['descricao'];?></p>
                         </div>
                     </div>
                   </div>
                </div>
-           <?php #Banner ---- Fim Laço?>
+           <?php endforeach; ?>
+
          </div>
 
           <!-- Controls -->
@@ -65,11 +70,11 @@
     </section>
 
     <section class="vantagens">
-        <?php #Vantagens ?>
+        <?php include_once 'template/vantagens.php';?>
     </section>
 
     <section class="funcionalidades">
-        <?php #Funcionalidades ?>
+        <?php include_once 'template/funcionalidades.php';?>
     </section>
 
     <section class="cadastro">
@@ -83,7 +88,7 @@
     </section>
 
     <footer class="footer">
-        <?php #Rodapé ?>
+        <?php include_once 'template/rodape.php'; ?>
     </footer>
 
 </body>

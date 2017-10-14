@@ -10,4 +10,4 @@
 	</li>
 </ul>
 
-<div class="copy">&copy; 2014 Dexter Curier Logistica S/A.</div>
+<div class="copy">&copy; 2017 Dexter Curier Logistica S/A.</div>
