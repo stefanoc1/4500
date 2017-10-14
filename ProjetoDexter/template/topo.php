@@ -16,7 +16,7 @@
           <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
         <![endif]-->
 
-        <?php include_once 'include/utils.php';?>
+        <?php include_once 'include/utils.php'; ?>
 </head>
 <body>
 <div class="container">
