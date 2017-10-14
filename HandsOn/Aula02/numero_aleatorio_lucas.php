@@ -185,4 +185,3 @@ rsort($numeros);
 foreach ($numeros as $numero) {
 	echo $numero . ",";
 }
-
