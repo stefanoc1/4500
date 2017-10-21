@@ -10,7 +10,7 @@ echo hash('sha1',$senha);
 
 
 
-
+home/developer/Área de trabalho/www/html
 
 
 

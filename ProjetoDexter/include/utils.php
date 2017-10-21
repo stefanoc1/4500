@@ -11,6 +11,17 @@ function verificaPagina($pagina)
 	}
 }
 
+function validaCampo($campo){
+	if ($campo == '') {
+		return false;
+	}
+	return true;
+}
 
+if(isset($_POST['nome'])){
+	echo $_POST['nome'];
+} else {
+	echo '';
+}
 
- ?>
+//echo (isset($_POST['nome'])) ? $_POST['nome'] : '';

@@ -24,43 +24,76 @@
 			<img src="img/banner-cadastro.jpg" alt="Banner Sobre">
 		</div>
 
-		<form action="#" method="post" class="form">
+		<?php 
+//Aula 7 - Task 4
+		if($_POST){
+
+			$ok = true;
+			$invalidos = [];
+
+			if (validaCampo($_POST['nome'])) {
+				$invalidos[] = 'Campo nome e obrigatorio';
+				$ok = false;
+			}
+			if (validaCampo($_POST['email'])) {
+				$invalidos[] = 'Campo email e obrigatorio';	
+				$ok = false;			
+			}
+
+			if (!$ok){
+				echo '<div class="alert alert-danger" role="alert">
+				 <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>';
+				foreach ($invalidos as $msg) {
+					echo $msg . '<br>';
+				}
+					echo '</div>';
+				} else {
+				echo '<div class="alert alert-success" role="alert">Enviado</div>
+				 <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+				 Enviado</div>';
+			}
+		} 
+		?>
+
+
+				<form action="#" method="post" class="form">
 			<p>
-				<label for="nome">Nome/Razao</label> <input type="text" name="nome"
+				<label for="nome">Nome/Razao</label> <input type="text" value"<?= (isset($_POST['nome'])) ? $_POST['nome'] : ''; ?>" name="nome"
 					id="nome_razao" required>
 			</p>
 			<p>
-				<label for="email">Email</label> <input type="email" name="email"
+				<label for="email">Email</label> <input type="email" value"<?= (isset($_POST['email'])) ? $_POST['email'] : ''; ?>" name="email"
 					id="email" required>
 			</p>
 			<p>
-				<label for="tel">Telefone</label> <input type="tel" name="telefone"
-					id="telefone" required>
+				<label for="tel">Telefone</label> <input type="tel" value"<?= (isset($_POST['tel'])) ? $_POST['tel'] : ''; ?>" name="telefone"
+					id="telefone" >
 			</p>
 			<p>
-				<label for="cel">Celular</label> <input type="tel" name="celular"
-					id="celular"  required>
+				<label for="cel">Celular</label> <input type="tel" value"<?= (isset($_POST['cel'])) ? $_POST['cel'] : ''; ?>" name="celular"
+					id="celular" >
 			</p>
 			<p>
-				<label for="cep">Cep</label> <input type="tel" name="cep" id="tel"
-					 required>
+				<label for="cep">Cep</label> <input type="text" value"<?= (isset($_POST['cep'])) ? $_POST['cep'] : ''; ?>" name="cep" id="cep"
+					 >
 			</p>
 			<p>
-				<label for="endereco">Endereço</label> <input type="tel"
-					name="telefone" id="bai" required>
+				<label for="endereco">Endereço</label> <input type="text" value"<?= (isset($_POST['endereco'])) ? $_POST['endereco'] : ''; ?>"
+					name="endereco" id="endereco" >
 			</p>
 			<p>
-				<label for="bairro">Bairro</label> <input type="tel" name="bairro"
-					id="tel" required>
+				<label for="bairro">Bairro</label> <input type="text" value"<?= (isset($_POST['bairro'])) ? $_POST['bairro'] : ''; ?>"name="bairro"
+					id="bairro" >
 			</p>
 			<p>
-				<label for="cidade">Cidade</label> <input type="tel" name="cidade"
-					id="cidade" required>
+				<label for="cidade">Cidade</label> <input type="text" value"<?= (isset($_POST['cidade'])) ? $_POST['cidade'] : ''; ?>" name="cidade"
+					id="cidade" >
 			</p>
 			<p>
 				<label for="Estado">Estado</label>
 				 <select name="estado" id="estado">
 					<option value="">Selecione</option>
+					<?php //<option <?=(isset($_POST['nome'])) ? $_POST['nome'] : '';?>value="AC">AC</option> ?>
 					<option value="AC">AC</option>
 					<option value="AL">AL</option>
 					<option value="AP">AP</option>
