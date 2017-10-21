@@ -29,16 +29,22 @@
                     <input type="text" name="nome" id="nome" placeholder="Nome" required>
                 </p>
                 <p>
+            <p>
+                <label for="nome">Nome/Razao</label> <input type="text" value"<?= (isset($_POST['nome'])) ? $_POST['nome'] : ''; ?>" name="nome"
+                    id="nome_razao" required>
+            </p>
+
+
                     <label for="email">Email</label>
-                    <input type="email" name="email" id="email" placeholder="seu@email.com" required>
+                    <input type="email" name="email" id="email" placeholder="seu@email.com" <?= (isset($_POST['email'])) ? $_POST['email'] : ''; ?> required>
                 </p>
                 <p>
                     <label for="tel">Telefone</label>
-                    <input type="tel" name="tel" id="tel" pattern="[0-9]{8}" placeholder="(xx) 1234-5678" required>
+                    <input type="tel" name="tel" id="tel" placeholder="(xx) 1234-5678" <?= (isset($_POST['tel'])) ? $_POST['tel'] : ''; ?>required>
                 </p>
                 <p>
                     <label for="msg">Mensagem</label>
-                    <textarea name="msg" id="msg" rows="5" placeholder="Sua mensagem..." required></textarea>
+                    <textarea name="msg" id="msg" rows="5" placeholder="Sua mensagem..." <?= (isset($_POST['msg'])) ? $_POST['msg'] : ''; ?> required></textarea>
                 </p>
                 <p>
                     <button class="btn">Enviar</button>

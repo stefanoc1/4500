@@ -12,17 +12,27 @@
 	<!-- Latest compiled and minified JavaScript -->
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 
-	<?php include_once 'include/funcs.php'; ?>
+	<?php include_once '../include/funcs.php'; ?>
+	<?php 
+
+	session_start();
+
+	if (!$_SESSION['logado']) {
+		header('Location: ../login.php');
+	}
+	
+
+	 ?>
 
 </head>
 <body>
-<nav class="navbar navbar-default navbar-static-top">
+<nav class="navbar navbar-inverse navbar-static-top">
   <div class="collapse navbar-collapse">
   <ul class="nav navbar-nav">
   	<li><a href="index.php">Home</a></li>
   	<li><a href="servicos.php">Serviços</a></li>
   	<li><a href="contato.php">Contato</a></li>
-  	<li><a href="login.php">Login</a></li>
+  	<li><a href="logout.php">Logout</a></li>
   </ul>
   </div>
 </nav>
