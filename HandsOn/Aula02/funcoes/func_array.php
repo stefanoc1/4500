@@ -78,5 +78,3 @@ echo "<hr>";
 
 $vetor = array_fill(8, 10, 'PHP');
 print_r($vetor);
-
-
