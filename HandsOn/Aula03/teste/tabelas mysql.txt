@@ -1,0 +1,144 @@
+developer@developer:~$ mysql --version
+mysql  Ver 15.1 Distrib 10.1.21-MariaDB, for debian-linux-gnu (x86_64) using readline 5.2
+developer@developer:~$ psql
+bash: psql: comando não encontrado
+developer@developer:~$ psql --version
+bash: psql: comando não encontrado
+developer@developer:~$ su
+Senha:
+su: Falha de autenticação
+developer@developer:~$ su
+Senha:
+root@developer:/home/developer# mysql
+Welcome to the MariaDB monitor.  Commands end with ; or \g.
+Your MariaDB connection id is 3
+Server version: 10.1.21-MariaDB-5+b1 Debian 9.0
+
+Copyright (c) 2000, 2016, Oracle, MariaDB Corporation Ab and others.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+MariaDB [(none)]> show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| mysql              |
+| performance_schema |
++--------------------+
+3 rows in set (0.04 sec)
+
+MariaDB [(none)]> create database aula04;
+Query OK, 1 row affected (0.00 sec)
+
+MariaDB [(none)]> show databases;
++--------------------+
+| Database           |
++--------------------+
+| aula04             |
+| information_schema |
+| mysql              |
+| performance_schema |
++--------------------+
+4 rows in set (0.00 sec)
+
+MariaDB [(none)]> use aula04;
+Database changed
+MariaDB [aula04]> SHOW TABLES;
+Empty set (0.00 sec)
+
+MariaDB [aula04]> CREATE TABLE tb_aluno (
+    -> id INTEGER,
+    -> nome VARCHAR,
+    -> email VARCHAR,
+    -> senha VARCHAR,
+    -> 
+    -> cpf  VARCHAR,
+    -> rg VARCHAR,
+    -> dt_nascimento VARCHAR
+    -> );
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '
+email VARCHAR,
+senha VARCHAR,
+
+cpf  VARCHAR,
+rg VARCHAR,
+dt_nascimento VARCHAR
+MariaDB [aula04]> CREATE TABLE tb_aluno (
+    -> id INTEGER,
+    -> nome VARCHAR,
+    -> email VARCHAR,
+    -> CREATE TABLE tb_aluno ( id INTEGER, nome VARCHAR, email VARCHAR, senha VARCHAR,  cpf  VARCHAR, rg VARCHAR, dt_nascimento VARCHAR );
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '
+email VARCHAR,
+CREATE TABLE tb_aluno ( id INTEGER, nome VARCHAR, email VARCHAR,' at line 3
+MariaDB [aula04]> CREATE TABLE tb_aluno (
+    -> id INTEGER,
+    -> nome VARCHAR(255),
+    -> email VARCHAR(255),
+    -> senha VARCHAR(255),
+    -> cpf VARCHAR(255),
+    -> rg VARCHAR(255),
+    -> dt_nascimento DATE,
+    -> PRIMARY KEY (id)
+    -> );
+Query OK, 0 rows affected (0.16 sec)
+
+MariaDB [aula04]> show databases;
++--------------------+
+| Database           |
++--------------------+
+| aula04             |
+| information_schema |
+| mysql              |
+| performance_schema |
++--------------------+
+4 rows in set (0.00 sec)
+
+MariaDB [aula04]> show tables;
++------------------+
+| Tables_in_aula04 |
++------------------+
+| tb_aluno         |
++------------------+
+1 row in set (0.00 sec)
+
+MariaDB [aula04]> describe tb_aluno;
++---------------+--------------+------+-----+---------+-------+
+| Field         | Type         | Null | Key | Default | Extra |
++---------------+--------------+------+-----+---------+-------+
+| id            | int(11)      | NO   | PRI | NULL    |       |
+| nome          | varchar(255) | YES  |     | NULL    |       |
+| email         | varchar(255) | YES  |     | NULL    |       |
+| senha         | varchar(255) | YES  |     | NULL    |       |
+| cpf           | varchar(255) | YES  |     | NULL    |       |
+| rg            | varchar(255) | YES  |     | NULL    |       |
+| dt_nascimento | date         | YES  |     | NULL    |       |
++---------------+--------------+------+-----+---------+-------+
+7 rows in set (0.02 sec)
+
+MariaDB [aula04]> CREATE TABLE tb_matricula (
+    -> id INTEGER NOT NULL,
+    -> aluno_id INTEGER NOT NULL,
+    -> turma_id INTEGER NOT NULL,
+    -> prova1 FLOAT,
+    -> prova2 FLOAT,
+    -> recuperacao FLOAT,
+    -> frequencia INT,
+    -> FOREIGN KEY (aluno_id) REFERENCES tb_aluno(id)
+    -> );
+Query OK, 0 rows affected (0.06 sec)
+
+MariaDB [aula04]> CREATE TABLE tb_turma (
+    -> id INTEGER NOT NULL,
+    -> curso_id INTEGER NOT NULL,
+    -> periodo_id INTEGER NOT NULL,
+    -> instrutor_id INTEGER NOT NULL,
+    -> PRIMARY KEY (id)
+    -> );
+Query OK, 0 rows affected (0.10 sec)
+MariaDB [aula04]> CREATE TABLE tb_periodo(
+    -> id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    -> descricao VARCHAR(255)
+    -> );
+Query OK, 0 rows affected (0.05 sec)

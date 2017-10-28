@@ -1,3 +1,47 @@
+=>tb_alunos
+id
+nome
+email
+senha
+cpf
+rg
+dt_nascimento
+
+=>tb_matricula
+id
+aluno_id
+turma_id
+prova1
+prova2
+recuperacao
+frequencia
+
+
+=>tb_turmas
+id
+curso_id
+periodo_id
+instrutor_id
+
+=>tb_curso
+id
+nome
+tipo
+carga_horaria
+requisitos
+
+=>tb_periodos
+id
+
+
+
+
+
+
+
+
+
+
 developer@developer:~$ mysql --version
 mysql  Ver 15.1 Distrib 10.1.21-MariaDB, for debian-linux-gnu (x86_64) using readline 5.2
 developer@developer:~$ psql
@@ -47,31 +91,6 @@ Database changed
 MariaDB [aula04]> SHOW TABLES;
 Empty set (0.00 sec)
 
-MariaDB [aula04]> CREATE TABLE tb_aluno (
-    -> id INTEGER,
-    -> nome VARCHAR,
-    -> email VARCHAR,
-    -> senha VARCHAR,
-    -> 
-    -> cpf  VARCHAR,
-    -> rg VARCHAR,
-    -> dt_nascimento VARCHAR
-    -> );
-ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '
-email VARCHAR,
-senha VARCHAR,
-
-cpf  VARCHAR,
-rg VARCHAR,
-dt_nascimento VARCHAR
-MariaDB [aula04]> CREATE TABLE tb_aluno (
-    -> id INTEGER,
-    -> nome VARCHAR,
-    -> email VARCHAR,
-    -> CREATE TABLE tb_aluno ( id INTEGER, nome VARCHAR, email VARCHAR, senha VARCHAR,  cpf  VARCHAR, rg VARCHAR, dt_nascimento VARCHAR );
-ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '
-email VARCHAR,
-CREATE TABLE tb_aluno ( id INTEGER, nome VARCHAR, email VARCHAR,' at line 3
 MariaDB [aula04]> CREATE TABLE tb_aluno (
     -> id INTEGER,
     -> nome VARCHAR(255),
@@ -137,8 +156,92 @@ MariaDB [aula04]> CREATE TABLE tb_turma (
     -> PRIMARY KEY (id)
     -> );
 Query OK, 0 rows affected (0.10 sec)
+
 MariaDB [aula04]> CREATE TABLE tb_periodo(
     -> id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
     -> descricao VARCHAR(255)
     -> );
 Query OK, 0 rows affected (0.05 sec)
+
+MariaDB [aula04]> CREATE TABLE curso(
+    -> id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    -> nome VARCHAR(255),
+    -> tipo VARCHAR(255),
+    -> carga_horaria INT,
+    -> requisito TEXT
+    -> );
+Query OK, 0 rows affected (0.10 sec)
+
+MariaDB [aula04]> DESCRIBE tb_aluno;
++---------------+--------------+------+-----+---------+-------+
+| Field         | Type         | Null | Key | Default | Extra |
++---------------+--------------+------+-----+---------+-------+
+| id            | int(11)      | NO   | PRI | NULL    |       |Auto_Increment
+| nome          | varchar(255) | YES  |     | NULL    |       |Not Null (150)
+| email         | varchar(255) | YES  |     | NULL    |       |Not Null (100)
+| senha         | varchar(255) | YES  |     | NULL    |       |Not Null (100)
+| cpf           | varchar(255) | YES  |     | NULL    |       |Not Null (11)
+| rg            | varchar(255) | YES  |     | NULL    |       |Not Null (20)
+| dt_nascimento | date         | YES  |     | NULL    |       |
++---------------+--------------+------+-----+---------+-------+
+7 rows in set (0.00 sec)
+
+MariaDB [aula04]> DESCRIBE tb_matricula;
++-------------+---------+------+-----+---------+-------+
+| Field       | Type    | Null | Key | Default | Extra |
++-------------+---------+------+-----+---------+-------+
+| id          | int(11) | NO   |     | NULL    |       |
+| aluno_id    | int(11) | NO   | MUL | NULL    |       |
+| turma_id    | int(11) | NO   |     | NULL    |       |
+| prova1      | float   | YES  |     | NULL    |       |
+| prova2      | float   | YES  |     | NULL    |       |
+| recuperacao | float   | YES  |     | NULL    |       |
+| frequencia  | int(11) | YES  |     | NULL    |       |
++-------------+---------+------+-----+---------+-------+
+7 rows in set (0.01 sec)
+
+MariaDB [aula04]> DESCRIBE tb_turma;
++--------------+---------+------+-----+---------+-------+
+| Field        | Type    | Null | Key | Default | Extra |
++--------------+---------+------+-----+---------+-------+
+| id           | int(11) | NO   | PRI | NULL    |       |
+| curso_id     | int(11) | NO   |     | NULL    |       |
+| periodo_id   | int(11) | NO   |     | NULL    |       |
+| instrutor_id | int(11) | NO   |     | NULL    |       |
++--------------+---------+------+-----+---------+-------+
+4 rows in set (0.00 sec)
+
+
+MariaDB [aula04]> DESCRIBE tb_periodo;
++-----------+--------------+------+-----+---------+----------------+
+| Field     | Type         | Null | Key | Default | Extra          |
++-----------+--------------+------+-----+---------+----------------+
+| id        | int(11)      | NO   | PRI | NULL    | auto_increment |
+| descricao | varchar(255) | YES  |     | NULL    |                |
++-----------+--------------+------+-----+---------+----------------+
+2 rows in set (0.01 sec)
+
+MariaDB [aula04]> DESCRIBE tb_curso;
++---------------+--------------+------+-----+---------+----------------+
+| Field         | Type         | Null | Key | Default | Extra          |
++---------------+--------------+------+-----+---------+----------------+
+| id            | int(11)      | NO   | PRI | NULL    | auto_increment |
+| nome          | varchar(255) | YES  |     | NULL    |                |
+| tipo          | varchar(255) | YES  |     | NULL    |                |
+| carga_horaria | int(11)      | YES  |     | NULL    |                |
+| requisito     | text         | YES  |     | NULL    |                |
++---------------+--------------+------+-----+---------+----------------+
+5 rows in set (0.01 sec)
+
+MariaDB [aula04]> show tables;
++------------------+
+| Tables_in_aula04 |
++------------------+
+| tb_aluno         |
+| tb_curso         |
+| tb_matricula     |
+| tb_periodo       |
+| tb_turma         |
++------------------+
+5 rows in set (0.00 sec)
+
