@@ -26,25 +26,19 @@
             <form action="#" method="post" class="form">
                 <p>
                     <label for="nome">Nome</label>
-                    <input type="text" name="nome" id="nome" placeholder="Nome" required>
+                    <input type="text" name="nome" id="nome" placeholder="Nome" <?= (isset($_POST['nome'])) ? $_POST['nome'] : ''; ?> >
                 </p>
                 <p>
-            <p>
-                <label for="nome">Nome/Razao</label> <input type="text" value"<?= (isset($_POST['nome'])) ? $_POST['nome'] : ''; ?>" name="nome"
-                    id="nome_razao" required>
-            </p>
-
-
                     <label for="email">Email</label>
-                    <input type="email" name="email" id="email" placeholder="seu@email.com" <?= (isset($_POST['email'])) ? $_POST['email'] : ''; ?> required>
+                    <input type="email" name="email" id="email" placeholder="seu@email.com" <?= (isset($_POST['email'])) ? $_POST['email'] : ''; ?> >
                 </p>
                 <p>
                     <label for="tel">Telefone</label>
-                    <input type="tel" name="tel" id="tel" placeholder="(xx) 1234-5678" <?= (isset($_POST['tel'])) ? $_POST['tel'] : ''; ?>required>
+                    <input type="tel" name="tel" id="tel" placeholder="(xx) 1234-5678" <?= (isset($_POST['tel'])) ? $_POST['tel'] : ''; ?> >
                 </p>
                 <p>
                     <label for="msg">Mensagem</label>
-                    <textarea name="msg" id="msg" rows="5" placeholder="Sua mensagem..." <?= (isset($_POST['msg'])) ? $_POST['msg'] : ''; ?> required></textarea>
+                    <textarea name="msg" id="msg" rows="5" placeholder="Sua mensagem..." <?= (isset($_POST['msg'])) ? $_POST['msg'] : ''; ?> ></textarea>
                 </p>
                 <p>
                     <button class="btn">Enviar</button>

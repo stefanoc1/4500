@@ -18,10 +18,22 @@ function validaCampo($campo){
 	return true;
 }
 
+function validaCampos($dados){
+	foreach ($dados as $chave => $valor) {
+		if ($valor == '') 
+			$chave;
+		}
+	}
+	if ($campo == '') {
+		return false;
+	}
+	return true;
+}
+
+/*
 if(isset($_POST['nome'])){
 	echo $_POST['nome'];
 } else {
 	echo '';
 }
-
-//echo (isset($_POST['nome'])) ? $_POST['nome'] : '';
+*/
